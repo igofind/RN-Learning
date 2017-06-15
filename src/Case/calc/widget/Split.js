@@ -1,5 +1,5 @@
-import React, {PureComponent} from 'react';
-import {AppRegistry, View} from 'react-native';
+import React, {PureComponent} from "react";
+import {View} from "react-native";
 import theme from "../common/theme";
 
 export default class Split extends PureComponent {

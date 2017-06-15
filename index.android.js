@@ -3,6 +3,6 @@
  */
 
 import {AppRegistry} from "react-native";
-import App from './src/Demo-calc/Main';
+import App from './src/Case/calc/Main';
 
 AppRegistry.registerComponent('RNLearning', () => App);

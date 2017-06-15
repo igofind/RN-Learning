@@ -2,7 +2,7 @@
  * Created by DELL on 2017/6/10.
  */
 import React, {PureComponent} from "react";
-import {Alert, TouchableOpacity, View} from "react-native";
+import {TouchableOpacity, View} from "react-native";
 import Icon from "./Icon";
 
 export default class BarButton extends PureComponent {
