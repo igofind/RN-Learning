@@ -15,10 +15,10 @@ export default class LabelInput extends PureComponent {
         };
 
         this._input = null;
-        this._inputValue = 0; // 都是数字，所以默认值给0，方便计算
+        this._inputValue = '';
 
         this.getValue = () => {
-            return this._inputValue;
+            return this._inputValue === '' ? 0 : this._inputValue;
         };
 
         this.clear = () => {
@@ -39,11 +39,10 @@ export default class LabelInput extends PureComponent {
         this.setState({
             isFocus: true,
         });
-        Alert.alert("focus")
     }
 
     _autoBlur() {
-        this._input.blur();
+        this._input.isFocused && this._input.isFocused() && this._input.blur();
     }
 
     _onBlur() {
@@ -61,21 +60,21 @@ export default class LabelInput extends PureComponent {
         if (!isInput) {
             return <Text
                 ref={(e) => this._input = e}
-                style={[styles.input, this.state.isFocus && styles.focus, this.props.textStyle]}
+                style={[styles.input, this.props.textStyle]}
                 {...this.props}
             >{this.props.value}</Text>
         } else {
             return <TextInput
                 ref={(e) => this._input = e}
-                value={this.props.value}
+                defaultValue={this._inputValue}
                 style={[styles.input, this.state.isFocus && styles.focus, this.props.textStyle]}
                 keyboardType={this.props.keyboardType ? this.props.keyboardType : 'numeric'}
                 underlineColorAndroid="transparent"
                 onChangeText={(newValue) => this._onChangeText(newValue)}
-                onfocus={() => this._onFocus()}
+                onFocus={() => this._onFocus()}
                 onBlur={() => this._onBlur()}
                 returnKeyType="done"
-                onEndEditing={() => this._onBlur()}
+                onEndEditing={() => this._autoBlur()}
                 editable={this.props.editable}
                 {...this.props}
             />
@@ -86,20 +85,6 @@ export default class LabelInput extends PureComponent {
         return (
             <View style={styles.content}>
                 <Text style={styles.label}>{this.props.label}</Text>
-                {/*<TextInput
-                    ref={(e) => this._input = e}
-                    value={this.props.value}
-                    style={[styles.input, this.state.isFocus && styles.focus, this.props.textStyle]}
-                    keyboardType={this.props.keyboardType ? this.props.keyboardType : 'numeric'}
-                    underlineColorAndroid="transparent"
-                    onChangeText={(newValue) => this._onChangeText(newValue)}
-                    onfocus={() => this._onFocus()}
-                    onBlur={() => this._onBlur()}
-                    returnKeyType="done"
-                    onEndEditing={() => this._onBlur()}
-                    editable={this.props.editable}
-                    {...this.props}
-                />*/}
                 {this._renderInput()}
                 <Text style={styles.unit}>{this.props.unit}</Text>
             </View>
