@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {ScrollView, TextInput, View} from "react-native";
+import React, { Component } from 'react';
+import { ScrollView, TextInput, View } from 'react-native';
 export default class TextInputIssue extends Component {
     // RN 0.44
     // Android
@@ -12,14 +12,14 @@ export default class TextInputIssue extends Component {
     render() {
         return (
             <ScrollView>
-                <View style={{height: 300}}>
-                    <TextInput placeholder={'1 Input something...'}/>
+                <View style={{ height: 300 }}>
+                    <TextInput placeholder={'1 Input something...'} />
                 </View>
-                <View style={{height: 300, textAlign: 'right'}}>
-                    <TextInput placeholder={'2 Input something...'}/>
+                <View style={{ height: 300, textAlign: 'right' }}>
+                    <TextInput placeholder={'2 Input something...'} />
                 </View>
-                <View style={{height: 300}}>
-                    <TextInput placeholder={'3 Input something...'}/>
+                <View style={{ height: 300 }}>
+                    <TextInput placeholder={'3 Input something...'} />
                 </View>
             </ScrollView>
         );

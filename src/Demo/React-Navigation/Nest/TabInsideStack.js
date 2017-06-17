@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import {Button, Text, View} from "react-native";
-import {StackNavigator, TabNavigator} from "react-navigation";
+import React, { Component } from 'react';
+import { Button, Text, View } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+
 class RecentChatsScreen extends Component {
     render() {
         return (
@@ -13,11 +14,11 @@ class RecentChatsScreen extends Component {
 
 class AllContactsScreen extends Component {
     render() {
-        const {navigate} = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             <View>
                 <Text>List of all contacts</Text>
-                <Button title={'chat with Ryn'} onPress={() => navigate('Chat')}/>
+                <Button title={'chat with Ryn'} onPress={() => navigate('Chat')} />
             </View>
         );
     }
@@ -25,7 +26,7 @@ class AllContactsScreen extends Component {
 
 class ChatScreen extends Component {
     static navigationOptions = {
-        headerTitle: 'Chat'
+        headerTitle: 'Chat',
     };
 
     render() {
@@ -44,12 +45,13 @@ const MainScreenNavigator = TabNavigator({
     },
 });
 
-export default NestingNavigators = StackNavigator({
+const NestingNavigators = StackNavigator({
     Home: {
         screen: MainScreenNavigator,
         navigationOptions: {
             title: 'My Chats',
-        }
+        },
     },
-    Chat: {screen: ChatScreen},
+    Chat: { screen: ChatScreen },
 });
+export default NestingNavigators;

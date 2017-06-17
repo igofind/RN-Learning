@@ -1,19 +1,21 @@
-import React, {Component} from "react";
-import {Text, TouchableOpacity, View} from "react-native";
-import {StackNavigator} from "react-navigation";
+import React, { Component } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
 class Home extends Component {
-    static navigationOptions = ({navigation}) => ({
+    static navigationOptions = ({ navigation }) => ({
         headerTitle: 'Home',
         headerTintColor: '#fff',
         headerRight: (
             <View>
                 <TouchableOpacity onPress={() => {
-                    navigation.navigate('chat')
-                }}>
+                    navigation.navigate('chat');
+                }}
+                >
                     <Text>Chat</Text>
                 </TouchableOpacity>
             </View>
-        )
+        ),
     });
 
     render() {
@@ -27,7 +29,7 @@ class Home extends Component {
 
 class Chat extends Component {
     static navigationOptions = {
-        title: 'Chat'
+        title: 'Chat',
     };
     render() {
         return (
@@ -38,11 +40,13 @@ class Chat extends Component {
     }
 }
 
-export default HeaderInStackNav = StackNavigator({
+const HeaderInStackNav = StackNavigator({
     Home: {
-        screen: Home
+        screen: Home,
     },
     chat: {
-        screen: Chat
-    }
+        screen: Chat,
+    },
 });
+
+export default HeaderInStackNav;

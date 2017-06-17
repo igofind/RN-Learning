@@ -1,0 +1,4 @@
+# node_modules ignored by default
+
+src/Case/calc/utils/big.min.js
+src/Case/calc/utils/CalcMethod.js

@@ -1,21 +1,16 @@
-import React, {Component} from "react";
-import {Text, TextInput, View} from "react-native";
-import {StackNavigator} from "react-navigation";
-class Home extends Component {
-    static navigationOptions = (({navigation}) => {
-            return {
-                title: `Header is ${ navigation.state.params.user }`
-            }
-        }
-    );
+import React, { Component } from 'react';
+import { Text, TextInput, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-    constructor() {
-        super();
-    }
+class Home extends Component {
+    static navigationOptions = (({ navigation }) => ({
+        title: `Header is ${navigation.state.params.user}`,
+    })
+    );
 
     render() {
         const navigation = this.props.navigation;
-        const {setParams} = navigation;
+        const { setParams } = navigation;
         return (
             <View>
                 <Text>自定义 StackNavigator header !</Text>
@@ -23,20 +18,23 @@ class Home extends Component {
                 <TextInput
                     value={navigation.state.params.user}
                     onChangeText={(newValue) => {
-                        setParams({user: newValue})
-                    }}/>
+                        setParams({ user: newValue });
+                    }}
+                />
             </View>
         );
     }
 }
 
-export default ScreenNavigationProp = StackNavigator({
+const ScreenNavigationProp = StackNavigator({
     Home: {
         screen: Home,
     },
 }, {
     initialRouteName: 'Home',
     initialRouteParams: {
-        user: 'Ryn'
+        user: 'Ryn',
     },
 });
+
+export default ScreenNavigationProp;
