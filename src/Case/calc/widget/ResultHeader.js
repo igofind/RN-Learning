@@ -1,21 +1,5 @@
-import React, {PureComponent} from "react";
-import {StyleSheet, Text, View} from "react-native";
-
-export default class ResultHeader extends PureComponent {
-    render() {
-        return (
-            <View style={{height: 117}}>
-                <View style={[styles.header, this.props.style]}>
-                    <Text style={styles.title}>{this.props.title}</Text>
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                        <Text style={styles.num}>{this.props.value || 0}</Text>
-                        <Text style={styles.unit}>万元</Text>
-                    </View>
-                </View>
-            </View>
-        );
-    }
-}
+import React, { PureComponent } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
     header: {
@@ -43,5 +27,21 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginTop: 8,
         textAlignVertical: 'center',
-    }
+    },
 });
+
+export default class ResultHeader extends PureComponent {
+    render() {
+        return (
+            <View style={{ height: 117 }}>
+                <View style={[styles.header, this.props.style]}>
+                    <Text style={styles.title}>{this.props.title}</Text>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+                        <Text style={styles.num}>{this.props.value || 0}</Text>
+                        <Text style={styles.unit}>万元</Text>
+                    </View>
+                </View>
+            </View>
+        );
+    }
+}

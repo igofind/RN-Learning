@@ -1,11 +1,11 @@
-import screen from "./screen";
+import screen from './screen';
 
 export default {
     headerTitleStyle: {
         fontWeight: 'normal',
         alignSelf: 'center',
         fontSize: 18,
-        color: '#fff'
+        color: '#fff',
     },
     headerStyle: {
         elevation: 0,
@@ -18,21 +18,21 @@ export default {
         textAlignVertical: 'center',
     },
     maskContainer: {
-        position: "absolute",
+        position: 'absolute',
         width: screen.width,
         height: screen.containerHeight,
         left: 0,
         top: screen.titleHeight,
     },
     mask: {
-        justifyContent: "center",
-        backgroundColor: "#383838",
+        justifyContent: 'center',
+        backgroundColor: '#383838',
         opacity: 0.25,
-        position: "absolute",
+        position: 'absolute',
         width: screen.width,
         height: screen.containerHeight,
     },
     split: {
         height: 12,
-    }
-}
+    },
+};

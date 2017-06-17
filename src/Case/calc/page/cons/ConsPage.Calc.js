@@ -1,9 +1,9 @@
-import React, {PureComponent} from "react";
-import {KeyboardAvoidingView, ScrollView, View} from "react-native";
-import TextInputWidget from "../../widget/LabelInput";
-import Rule from "../../widget/RuleLink";
-import Split from "../../widget/Split";
-import ButtonTool from "../../widget/ButtonTool";
+import React, { PureComponent } from 'react';
+import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
+import TextInputWidget from '../../widget/LabelInput';
+import Rule from '../../widget/RuleLink';
+import Split from '../../widget/Split';
+import ButtonTool from '../../widget/ButtonTool';
 
 export default class extends PureComponent {
     constructor() {
@@ -23,44 +23,45 @@ export default class extends PureComponent {
     }
 
     _resetInputs() {
-        let inputs = this.inputs;
-        this._calcItems.map(function (curr) {
+        const inputs = this.inputs;
+        this._calcItems.map((curr) => {
             inputs[curr[2]].clear();
+            return curr;
         });
     }
 
     _getValues() {
-        let inputs = this.inputs;
-        let values = [];
+        const inputs = this.inputs;
+        const values = [];
         // 与计算方法参数列表顺序保持一致
-        let itemArr = ['htzdl', 'sjzdl', 'sbxsyd', 'sbxsjc', 'ydjjcjdl', 'ydcqjsjc', 'yxpcfw', 'zhmldj'];
-        itemArr.map(function (curr) {
+        const itemArr = ['htzdl', 'sjzdl', 'sbxsyd', 'sbxsjc', 'ydjjcjdl', 'ydcqjsjc', 'yxpcfw', 'zhmldj'];
+        itemArr.map((curr) => {
             values.push(inputs[curr].getValue());
+            return curr;
         });
         return values;
     }
 
     render() {
-        let calcItems = this._calcItems;
+        const calcItems = this._calcItems;
         return (
-            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={125} style={{flex: 1,}}>
+            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={125} style={{ flex: 1 }}>
                 <ScrollView>
-                    <Split/>
+                    <Split />
                     <View >
                         {
-                            calcItems.map((curr, index) => {
-                                return <TextInputWidget
-                                    label={calcItems[index][0]}
-                                    key={index}
-                                    unit={calcItems[index][1]}
-                                    isInput={true}
-                                    ref={(e) => this.inputs[calcItems[index][2]] = e}/>
-                            })
+                            calcItems.map((curr, index) => (<TextInputWidget
+                                label={calcItems[index][0]}
+                                key={curr.id}
+                                unit={calcItems[index][1]}
+                                isInput={true}
+                                ref={(e) => { this.inputs[calcItems[index][2]] = e; }}
+                            />))
                         }
                     </View>
-                    <Split style={{height: 30}}/>
-                    <Rule.GuangDong navigation={this.props.navigation}/>
-                    <Split style={{height: 30}}/>
+                    <Split style={{ height: 30 }} />
+                    <Rule.GuangDong navigation={this.props.navigation} />
+                    <Split style={{ height: 30 }} />
 
                     <ButtonTool
                         onReset={() => {
@@ -68,13 +69,13 @@ export default class extends PureComponent {
                             this.props.onReset();
                         }}
                         onOk={() => {
-                            this.props.onOk(this._getValues())
-                        }}/>
+                            this.props.onOk(this._getValues());
+                        }}
+                    />
 
-                    <Split style={{height: 30}}/>
+                    <Split style={{ height: 30 }} />
                 </ScrollView>
             </KeyboardAvoidingView>
         );
-
     }
 }

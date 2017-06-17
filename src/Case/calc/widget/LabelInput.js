@@ -1,9 +1,41 @@
 /**
  * @flow
  */
-import React, {PureComponent} from "react";
-import {Alert, Keyboard, StyleSheet, Text, TextInput, View} from "react-native";
-import screen from "../common/screen";
+import React, { PureComponent } from 'react';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
+import screen from '../common/screen';
+
+const styles = StyleSheet.create({
+    content: {
+        backgroundColor: '#fff',
+        height: 45,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingLeft: 15,
+        paddingRight: 10,
+        borderBottomColor: '#e6e6e6',
+        borderBottomWidth: screen.onePixel,
+    },
+    input: {
+        flex: 1,
+        textAlign: 'right',
+        fontSize: 14,
+        color: '#8d8d8d',
+    },
+    focus: {
+        color: '#3a3a3a',
+    },
+    label: {
+        fontSize: 15,
+        color: '#3a3a3a',
+    },
+    unit: {
+        fontSize: 14,
+        color: '#c8c8c8',
+        paddingRight: 12,
+        paddingLeft: 5,
+    },
+});
 
 export default class LabelInput extends PureComponent {
 
@@ -17,14 +49,12 @@ export default class LabelInput extends PureComponent {
         this._input = null;
         this._inputValue = '';
 
-        this.getValue = () => {
-            return this._inputValue === '' ? 0 : this._inputValue;
-        };
+        this.getValue = () => (this._inputValue === '' ? 0 : this._inputValue);
 
         this.clear = () => {
             this._input.clear();
             this._inputValue = 0;
-        }
+        };
     }
 
     componentWillMount() {
@@ -56,29 +86,28 @@ export default class LabelInput extends PureComponent {
     }
 
     _renderInput() {
-        let isInput = this.props.isInput;
+        const isInput = this.props.isInput;
         if (!isInput) {
-            return <Text
-                ref={(e) => this._input = e}
+            return (<Text
+                ref={(e) => { this._input = e; }}
                 style={[styles.input, this.props.textStyle]}
                 {...this.props}
-            >{this.props.value}</Text>
-        } else {
-            return <TextInput
-                ref={(e) => this._input = e}
-                defaultValue={this._inputValue}
-                style={[styles.input, this.state.isFocus && styles.focus, this.props.textStyle]}
-                keyboardType={this.props.keyboardType ? this.props.keyboardType : 'numeric'}
-                underlineColorAndroid="transparent"
-                onChangeText={(newValue) => this._onChangeText(newValue)}
-                onFocus={() => this._onFocus()}
-                onBlur={() => this._onBlur()}
-                returnKeyType="done"
-                onEndEditing={() => this._autoBlur()}
-                editable={this.props.editable}
-                {...this.props}
-            />
+            >{this.props.value}</Text>);
         }
+        return (<TextInput
+            ref={(e) => { this._input = e; }}
+            defaultValue={this._inputValue}
+            style={[styles.input, this.state.isFocus && styles.focus, this.props.textStyle]}
+            keyboardType={this.props.keyboardType ? this.props.keyboardType : 'numeric'}
+            underlineColorAndroid="transparent"
+            onChangeText={newValue => this._onChangeText(newValue)}
+            onFocus={() => this._onFocus()}
+            onBlur={() => this._onBlur()}
+            returnKeyType="done"
+            onEndEditing={() => this._autoBlur()}
+            editable={this.props.editable}
+            {...this.props}
+        />);
     }
 
     render() {
@@ -91,35 +120,3 @@ export default class LabelInput extends PureComponent {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    content: {
-        backgroundColor: '#fff',
-        height: 45,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 15,
-        paddingRight: 10,
-        borderBottomColor: '#e6e6e6',
-        borderBottomWidth: screen.onePixel,
-    },
-    input: {
-        flex: 1,
-        textAlign: 'right',
-        fontSize: 14,
-        color: '#8d8d8d',
-    },
-    focus: {
-        color: '#3a3a3a',
-    },
-    label: {
-        fontSize: 15,
-        color: '#3a3a3a',
-    },
-    unit: {
-        fontSize: 14,
-        color: '#c8c8c8',
-        paddingRight: 12,
-        paddingLeft: 5,
-    }
-});

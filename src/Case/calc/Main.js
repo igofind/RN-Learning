@@ -1,6 +1,6 @@
-import {StackNavigator} from "react-navigation";
-import RulePage from "./page/RulePage";
-import CalcScene from "./scene/CalcScene";
+import { StackNavigator } from 'react-navigation';
+import RulePage from './page/RulePage';
+import CalcScene from './scene/CalcScene';
 
 const stackNav = StackNavigator({
     CalcScene: {
@@ -9,10 +9,10 @@ const stackNav = StackNavigator({
     RulePage: {
         screen: RulePage,
     },
-},{
-    cardStyle:{
-        backgroundColor: '#f5f5f5'
-    }
+}, {
+    cardStyle: {
+        backgroundColor: '#f5f5f5',
+    },
 });
 
 export default stackNav;

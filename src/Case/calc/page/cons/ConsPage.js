@@ -1,9 +1,22 @@
-import React, {PureComponent} from "react";
-import {StyleSheet} from "react-native";
-import ConsCalc from "./ConsPage.Calc";
-import ConsResult from "./ConsPage.Result";
-import ScrollableTabView from "react-native-scrollable-tab-view";
-import Calc from "../../utils/CalcMethod";
+import React, { PureComponent } from 'react';
+import { StyleSheet } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import ConsCalc from './ConsPage.Calc';
+import ConsResult from './ConsPage.Result';
+import Calc from '../../utils/CalcMethod';
+
+const styles = StyleSheet.create({
+    underLine: {
+        height: 2,
+        backgroundColor: '#00aaee',
+    },
+    text: {
+        fontSize: 15,
+        marginTop: 10,
+        fontWeight: 'normal',
+        textAlignVertical: 'center',
+    },
+});
 
 export default class ConsCalcPage extends PureComponent {
 
@@ -18,36 +31,29 @@ export default class ConsCalcPage extends PureComponent {
 
     render() {
         return (
-            <ScrollableTabView ref={(tabView) => this._tabView = tabView}
-                               tabBarUnderlineStyle={styles.underLine}
-                               tabBarBackgroundColor='#fff'
-                               tabBarTextStyle={styles.text}
-                               tabBarActiveTextColor='#00aaee'
-                               initialPage={0}
-                               prerenderingSiblingsNumber={1}>
+            <ScrollableTabView
+                ref={(tabView) => { this._tabView = tabView; }}
+                tabBarUnderlineStyle={styles.underLine}
+                tabBarBackgroundColor="#fff"
+                tabBarTextStyle={styles.text}
+                tabBarActiveTextColor="#00aaee"
+                initialPage={0}
+                prerenderingSiblingsNumber={1}
+            >
 
-                <ConsCalc tabLabel="测算数据"
-                          onReset={() => this._doReset()}
-                          onOk={(values) => this._doCalc(values)}
-                          navigation={this.props.navigation}/>
+                <ConsCalc
+                    tabLabel="测算数据"
+                    onReset={() => this._doReset()}
+                    onOk={values => this._doCalc(values)}
+                    navigation={this.props.navigation}
+                />
 
-                <ConsResult ref={(e) => this._consResult = e}
-                            tabLabel="测算结果"
-                            navigation={this.props.navigation}/>
+                <ConsResult
+                    ref={(e) => { this._consResult = e; }}
+                    tabLabel="测算结果"
+                    navigation={this.props.navigation}
+                />
             </ScrollableTabView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    underLine: {
-        height: 2,
-        backgroundColor: '#00aaee'
-    },
-    text: {
-        fontSize: 15,
-        marginTop: 10,
-        fontWeight: 'normal',
-        textAlignVertical: 'center',
-    }
-});

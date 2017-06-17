@@ -1,26 +1,7 @@
-import React, {PureComponent} from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, { PureComponent } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import screen from "../common/screen";
-
-export default class ButtonTool extends PureComponent {
-    render() {
-        return (
-            <View style={styles.container}>
-                <TouchableOpacity activeOpacity={1} onPress={this.props.onReset}>
-                    <View style={[styles.btn, styles.btnReset]}><Text
-                        style={[styles.btnText, styles.btnTextReset]}>重置</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={1} onPress={this.props.onOk}>
-                    <View style={[styles.btn, styles.btnOk]}><Text
-                        style={[styles.btnText, styles.btnTextOk]}>测算</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        );
-    }
-}
+import screen from '../common/screen';
 
 const styles = StyleSheet.create({
     container: {
@@ -47,7 +28,7 @@ const styles = StyleSheet.create({
     btnText: {
         flex: 1,
         textAlignVertical: 'center',
-        textAlign:'center',
+        textAlign: 'center',
         fontSize: 18,
     },
     btnTextReset: {
@@ -55,5 +36,25 @@ const styles = StyleSheet.create({
     },
     btnTextOk: {
         color: '#fff',
-    }
+    },
 });
+
+export default class ButtonTool extends PureComponent {
+    render() {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity activeOpacity={1} onPress={this.props.onReset}>
+                    <View style={[styles.btn, styles.btnReset]}>
+                        <Text style={[styles.btnText, styles.btnTextReset]}>重置</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={1} onPress={this.props.onOk}>
+                    <View style={[styles.btn, styles.btnOk]}>
+                        <Text style={[styles.btnText, styles.btnTextOk]}>测算</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+}
+
