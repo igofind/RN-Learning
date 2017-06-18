@@ -2,8 +2,8 @@
  * Created by DELL on 2017/6/15.
  */
 import React, { Component } from 'react';
-import MyButton from './MyButton';
 import { View } from 'react-native';
+import MyButton from './MyButton';
 
 export default class BtnClickDisappear extends Component {
 
@@ -12,32 +12,6 @@ export default class BtnClickDisappear extends Component {
         this.state = {
             reset: true,
         };
-    }
-
-    _refreshByState() {
-        this.setState((prevState, props) => ({
-            reset: !prevState.reset,
-        }));
-    }
-
-    _resetChild() {
-        this.myBtn1.resetState();
-    }
-
-    render() {
-        console.log('父 step：render');
-        return (
-            <View>
-                <MyButton ref={e => this.myBtn1 = e} title="Button1 点我消失" reset={this.state.reset} color="red" />
-                <MyButton title={'重置（通过改变父组件直接操作子组件）'} onPress={() => this._resetChild()} />
-
-                <View style={{ height: 30 }} />
-                <MyButton title="Button2 点我消失" reset={this.state.reset} color="green" />
-                <MyButton title="Button3 点我消失" reset={this.state.reset} color="blue" />
-
-                <MyButton title={'重置（通过改变父组件的state来改变子组件）'} onPress={() => this._refreshByState()} />
-            </View>
-        );
     }
 
     // *************************************************生命周期******************************************************//
@@ -69,5 +43,31 @@ export default class BtnClickDisappear extends Component {
 
     componentWillUnmount() {
         console.log('父 step 6：componentWillUnmount');
+    }
+
+    _refreshByState() {
+        this.setState(prevState => ({
+            reset: !prevState.reset,
+        }));
+    }
+
+    _resetChild() {
+        this.myBtn1.resetState();
+    }
+
+    render() {
+        console.log('父 step：render');
+        return (
+            <View>
+                <MyButton ref={(e) => { this.myBtn1 = e; }} title="Button1 点我消失" reset={this.state.reset} color="red" />
+                <MyButton title={'重置（通过改变父组件直接操作子组件）'} onPress={() => this._resetChild()} />
+
+                <View style={{ height: 30 }} />
+                <MyButton title="Button2 点我消失" reset={this.state.reset} color="green" />
+                <MyButton title="Button3 点我消失" reset={this.state.reset} color="blue" />
+
+                <MyButton title={'重置（通过改变父组件的state来改变子组件）'} onPress={() => this._refreshByState()} />
+            </View>
+        );
     }
 }

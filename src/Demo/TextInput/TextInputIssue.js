@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, TextInput, View } from 'react-native';
+
 export default class TextInputIssue extends Component {
     // RN 0.44
     // Android
