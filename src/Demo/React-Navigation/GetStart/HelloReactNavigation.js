@@ -54,7 +54,7 @@ class Settings extends Component {
     }
 }
 
-export default HelloReactNavigation = StackNavigator({
+const HelloReactNavigation = StackNavigator({
     Welcome: {
         screen: Welcome,
         key: 1,
@@ -66,3 +66,5 @@ export default HelloReactNavigation = StackNavigator({
         screen: Settings,
     },
 });
+
+export default HelloReactNavigation;
