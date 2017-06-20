@@ -4,6 +4,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import ConsCalc from './ConsPage.Calc';
 import ConsResult from './ConsPage.Result';
 import Calc from '../../utils/CalcMethod';
+import CustomTabBar from '../../widget/MyTabBar';
 
 const styles = StyleSheet.create({
     underLine: {
@@ -32,6 +33,7 @@ export default class ConsCalcPage extends PureComponent {
     render() {
         return (
             <ScrollableTabView
+                renderTabBar={() => <CustomTabBar activeOpacity={1} />}
                 ref={(tabView) => { this._tabView = tabView; }}
                 tabBarUnderlineStyle={styles.underLine}
                 tabBarBackgroundColor="#fff"

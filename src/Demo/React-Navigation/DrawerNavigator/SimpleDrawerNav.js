@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View, StyleSheet, Text, ScrollView } from 'react-native';
+import {Button, View, StyleSheet, Text, ScrollView, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { DrawerItems, DrawerNavigator, StackNavigator } from 'react-navigation';
 
