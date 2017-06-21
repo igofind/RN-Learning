@@ -34,12 +34,12 @@ const DefaultTabBar = React.createClass({
     },
 
     renderTab(name, page, isTabActive, onPressHandler) {
-        const { activeTextColor, inactiveTextColor, textStyle } = this.props;
+        const { activeTextColor, inactiveTextColor, textStyle, } = this.props;
         const textColor = isTabActive ? activeTextColor : inactiveTextColor;
         const fontWeight = isTabActive ? 'bold' : 'normal';
 
-        return (<Button
-            style={styles.flexOne}
+        return <Button
+            style={{flex: 1, }}
             key={name}
             accessible={true}
             accessibilityLabel={name}
@@ -47,12 +47,12 @@ const DefaultTabBar = React.createClass({
             activeOpacity={this.props.activeOpacity}
             onPress={() => onPressHandler(page)}
         >
-            <View style={[styles.tab, this.props.tabStyle]}>
-                <Text style={[{ color: textColor, fontWeight }, textStyle]}>
+            <View style={[styles.tab, this.props.tabStyle, ]}>
+                <Text style={[{color: textColor, fontWeight, }, textStyle, ]}>
                     {name}
                 </Text>
             </View>
-        </Button>);
+        </Button>;
     },
 
     render() {
@@ -66,17 +66,28 @@ const DefaultTabBar = React.createClass({
             bottom: 0,
         };
 
-        const left = this.props.scrollValue.interpolate({
-            inputRange: [0, 1], outputRange: [0, containerWidth / numberOfTabs],
+        const translateX = this.props.scrollValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0,  containerWidth / numberOfTabs],
         });
         return (
-            <View style={[styles.tabs, { backgroundColor: this.props.backgroundColor }, this.props.style]}>
+            <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor, }, this.props.style, ]}>
                 {this.props.tabs.map((name, page) => {
                     const isTabActive = this.props.activeTab === page;
                     const renderTab = this.props.renderTab || this.renderTab;
                     return renderTab(name, page, isTabActive, this.props.goToPage);
                 })}
-                <Animated.View style={[tabUnderlineStyle, { left }, this.props.underlineStyle]} />
+                <Animated.View
+                    style={[
+                        tabUnderlineStyle,
+                        {
+                            transform: [
+                                { translateX },
+                            ]
+                        },
+                        this.props.underlineStyle,
+                    ]}
+                />
             </View>
         );
     },
@@ -88,9 +99,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingBottom: 10,
-    },
-    flexOne: {
-        flex: 1,
     },
     tabs: {
         height: 50,
