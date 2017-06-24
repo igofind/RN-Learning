@@ -34,11 +34,11 @@ class CalcScene extends PureComponent {
 
     _changeUser(user, showCons) {
         this.currentUser = user;
+        this.titleBar.toggleIcon();
+        this._toggleList();
         this.setState({
             showCons,
         });
-        this._toggleList();
-        this.titleBar.toggleIcon();
     }
 
     _getTitle() {
