@@ -16,6 +16,7 @@ import { AppRegistry } from 'react-native';
 // import App from './src/Demo/React-Navigation/StackInTabs';
 // import App from './src/Demo/React-Navigation/TabNavigator/SimpleTabNav';
 // import App from './src/Demo/React-Navigation/DrawerNavigator/SimpleDrawerNav';
-import App from './src/Demo/React-Navigation/Actions/App';
+// import App from './src/Demo/React-Navigation/Actions/App';
+import App from './src/Case/ECharts/BarDemo';
 
 AppRegistry.registerComponent('RNLearning', () => App);
