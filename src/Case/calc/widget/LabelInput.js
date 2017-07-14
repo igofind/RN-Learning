@@ -68,6 +68,7 @@ export default class LabelInput extends PureComponent {
     _onFocus() {
         this.setState({
             isFocus: true,
+            keyboardType: this.props.keyboardType ? this.props.keyboardType : 'numeric',
         });
     }
 
@@ -78,6 +79,7 @@ export default class LabelInput extends PureComponent {
     _onBlur() {
         this.setState({
             isFocus: false,
+            keyboardType: 'default',
         });
     }
 
@@ -98,7 +100,7 @@ export default class LabelInput extends PureComponent {
             ref={(e) => { this._input = e; }}
             defaultValue={this._inputValue}
             style={[styles.input, this.state.isFocus && styles.focus, this.props.textStyle]}
-            keyboardType={this.props.keyboardType ? this.props.keyboardType : 'numeric'}
+            keyboardType={this.state.keyboardType}
             underlineColorAndroid="transparent"
             onChangeText={newValue => this._onChangeText(newValue)}
             onFocus={() => this._onFocus()}
@@ -106,6 +108,7 @@ export default class LabelInput extends PureComponent {
             returnKeyType="done"
             onEndEditing={() => this._autoBlur()}
             editable={this.props.editable}
+            multiline={true}
             {...this.props}
         />);
     }
